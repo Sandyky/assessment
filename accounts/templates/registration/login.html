@@ -1,0 +1,42 @@
+{% extends  'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block main %}
+
+{% if user.is_authenticated %}
+<div class="card"></div>
+    <div class="card-body"></div>
+    <div class="imgcontainer">
+        <img src="{% static 'images/add-ticket.png' %}" alt="Avatar" class="avatar">
+        <div>
+            <p class="text-center">
+                <a href="{% url 'new_ticket' %}" class="btn btn-primary my-2">Add New Ticket</a>
+            </p> 
+        </div>
+
+    </div>
+
+{% else %}
+
+<div class="card">
+    <div class="card-body">
+        <h6 class="card-title">Login to acoount</h6>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="imgcontainer">
+                <img src="{% static 'images/login_icon.png' %}" alt="Avatar" class="avatar">
+            </div>
+
+            <input type="hidden" name="next" value="{{ next }}">
+
+            {{ form|crispy }}
+
+            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+        </form>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}
