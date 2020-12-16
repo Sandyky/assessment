@@ -1,22 +1,27 @@
 <!doctype  html>
 
 <html  lang="en">
-  {% load static %}
+  <!-- {% load static %} -->
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link  rel="stylesheet"  href="{% static 'css/bootstrap.min.css' %}" >
+
     <title>Add Ticket</title>
     <style>
-      body {font-family: Arial, Helvetica, sans-serif;
-          background-image: url("images/background.jpg");
-          }
-      form {border: 3px solid #f1f1f1;
-          width: 25%;
-          margin: auto;
-          margin-top: 10%;
-          border-radius: 10px;}
+      .add_tkt {
+                font-family: Arial, Helvetica, sans-serif;
+                background-image: url("{% static 'images/background.jpg' %}");
+              }
+
+      form {
+            border: 3px solid #f1f1f1;
+            width: 25%;
+            margin: auto;
+            border-radius: 10px;
+        }
       
       input[type=text], input[type=password] {
+
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -26,16 +31,48 @@
         border-radius: 10px;
       
       }
+
+      input[type=submit] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: brown;
+        color: burlywood;
+      
+      }
+      select{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 10px;
+      }
+      textarea {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 10px;
+      }
       
       button {
         background-color: #4CAF50;
         color: white;
         padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
+        margin: auto;
+        border: black;
         cursor: pointer;
         width: 100%;
-        border-radius: 10px;
+        border-radius: 60px;
+        
       }
       
       button:hover {
@@ -83,7 +120,7 @@
     </style>
   
   </head>
-  
+  <body class="add_tkt">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
   <div class="card"></div>
@@ -93,85 +130,82 @@
       <img src="{% static 'images/add-ticket.png' %}" alt="Avatar" class="avatar">
       <h6 class="card-title">Submit a ticket</h6>
     </div>
-    
-    <form id ='subticket' action="add_ticket" method="post"> 
-
-    {% csrf_token %}
-    <ul>
-      <fieldset>
-        <legend><h5 class="text-success">Ticket Information</h5></legend>
-        
-          <li>
-              <p>
-                <label class ="bg-light">Department</label>
-                  <select id = "Department" name = "Department" >
-                    <option value = "PWSLab DevOps Support">PWSLab DevOps Support</option>
-                    <option value = "iSupport">iSupport</option>
-                  </select>
-              </p>
-          </li>
-
-          <li>
-              <p>
-                  <label class ="bg-light">Category</label>
-                    <select id = "Category" name = "Category" >
-                      <option value = "New Project CI/CD Pipeline Setup">New Project CI/CD Pipeline Setup</option>
-                      <option value = "Update CI/CD Pipeline Configuration">Update CI/CD Pipeline Configuration</option>
-                      <option value = "DevSecOps Pipeline Setup">DevSecOps Pipeline Setup</option>
-                      <option value = "CI/CD pipeline failure">CI/CD pipeline failure</option>
-                      <option value = "Automated Deployment failure">Automated Deployment failure</option>
-                      <option value = "Docker and Containers">Docker and Containers</option>
-                      <option value = "Kubernetes Deployments(like EKS/GCP)">Kubernetes Deployments(like EKS/GCP)</option>
-                      <option value = "Git Source control">Git Source control</option>
-                      <option value = "PWSLab server not responding(502/503 errors)">PWSLab server not responding(502/503 errors)</option>
-                      <option value = "PWSLab Runner not working (jobs not running)">PWSLab Runner not working (jobs not running)</option>
-                      <option value = "User management and Project access">User management and Project access</option>
-                      <option value = "loud Integration Consultation - AWS/GCP/Azure">Cloud Integration Consultation - AWS/GCP/Azure</option>
-                      <option value = "Others">Others</option>
-                  </select>
-              </p>
-          </li>
-          <label class ="bg-light">Subject</label>
-          <li><input type="Subject" placeholder="Subject" 
-          name="Subject" class="field" required></li>
-
-      <li>
-          <p>
-            <label class ="bg-light">Priority</label>
-              <select id = "Priority" name = "Priority" >
-                <option value = "-None-">-None-</option>
-                <option value = "High">High</option>
-                <option value = "Medium">Medium</option>
-                <option value = "Low">Low</option>
-              </select>
-          </p>
-      </li>
-
-      <label class ="bg-light">Contacts</label>
-      <li><input class="field" type="Name" placeholder="Name" required name="Name"></li>
-      <li><input class="field" type="Email" placeholder="Email" required name="Email"></li>>
-  
-
-
-      <label class ="bg-light">description</label>
-      <li><textarea placeholder="description" 
-        name="description" rows="6" class="field" required></textarea></li>
-
-
-      <li><input class ="bg-success" type="submit" value="Submit"></li> 
-      <!-- <li><button class ="bg-danger" href="{% url 'home' %}">Cancel</button></li>  -->
-    </fieldset>
-
-    </ul>
-
-    </form>
 
   </div>
 
-  </body>
+    <form class ="form-group" id ="submitticket" action="add_ticket" method="post"> 
+
+      {% csrf_token %}
+      <ul>
+        <fieldset>
+            <legend><h5 class="text-success">Ticket Information</h5></legend>
+            
+              <li>
+                  <p>
+                    <label class ="bg-light">Department</label>
+                      <select id = "Department" name = "Department" >
+                        <option value = "PWSLab DevOps Support">PWSLab DevOps Support</option>
+                        <option value = "iSupport">iSupport</option>
+                      </select>
+                  </p>
+              </li>
+
+              <li>
+                  <p>
+                      <label class ="bg-light">Category</label>
+                        <select id = "Category" name = "Category" >
+                          <option value = "New Project CI/CD Pipeline Setup">New Project CI/CD Pipeline Setup</option>
+                          <option value = "Update CI/CD Pipeline Configuration">Update CI/CD Pipeline Configuration</option>
+                          <option value = "DevSecOps Pipeline Setup">DevSecOps Pipeline Setup</option>
+                          <option value = "CI/CD pipeline failure">CI/CD pipeline failure</option>
+                          <option value = "Automated Deployment failure">Automated Deployment failure</option>
+                          <option value = "Docker and Containers">Docker and Containers</option>
+                          <option value = "Kubernetes Deployments(like EKS/GCP)">Kubernetes Deployments(like EKS/GCP)</option>
+                          <option value = "Git Source control">Git Source control</option>
+                          <option value = "PWSLab server not responding(502/503 errors)">PWSLab server not responding(502/503 errors)</option>
+                          <option value = "PWSLab Runner not working (jobs not running)">PWSLab Runner not working (jobs not running)</option>
+                          <option value = "User management and Project access">User management and Project access</option>
+                          <option value = "loud Integration Consultation - AWS/GCP/Azure">Cloud Integration Consultation - AWS/GCP/Azure</option>
+                          <option value = "Others">Others</option>
+                      </select>
+                  </p>
+              </li>
+              <label class ="bg-light">Subject</label>
+              <li><input type="text" placeholder="Subject" 
+              name="Subject" class="field" required></li>
+
+          <li>
+              <p>
+                <label class ="bg-light">Priority</label>
+                  <select id = "Priority" name = "Priority" >
+                    <option value = "-None-">-None-</option>
+                    <option value = "High">High</option>
+                    <option value = "Medium">Medium</option>
+                    <option value = "Low">Low</option>
+                  </select>
+              </p>
+          </li>
+
+          <label class ="bg-light">Contacts</label>
+          <li><input class="field" type="text" placeholder="Name" required name="Name" value = {{ request.user.name }}></li>
+          <li><input class="field" type="text" placeholder="Email" required name="Email" value = {{ request.user.email }}></li>
+          <li><input class="field" type="text" placeholder="Phone" required name="Phone" value = {{ request.user.phone }}></li>
+
+          <label class ="bg-light">description</label>
+          <li><textarea placeholder="description" 
+            name="description" rows="6" class="field" required></textarea></li>
+            <input  type="submit" value="Submit">
+        
+        </fieldset>
+
+      </ul>
+
+    </form>
 
   <script src="{% static 'jquery-3.5.1.min.js' %}" ></script>
   <script src="{% static 'popper.min.js' %}" ></script>
   <script src="{% static '/js/bootstrap.min.js' %}" ></script>
 
+</body>
+  
 </html>

@@ -23,12 +23,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     
-    # path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', views.home, name='home'),
     path('new_ticket', ticketviews.new_ticket, name='new_ticket'),
     path('add_ticket', ticketviews.add_ticket, name='add_ticket'),
-    path('new_ticket', ticketviews.new_ticket, name='new_ticket'),
+    path('ticket_added', ticketviews.ticket_added, name='ticket_added'),
+    path('view_ticket', ticketviews.GetTickets.as_view(template_name='view_ticket.html'), name='view_ticket'),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
